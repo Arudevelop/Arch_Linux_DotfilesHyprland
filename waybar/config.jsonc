@@ -1,0 +1,354 @@
+[
+    {
+        "editor.fontFamily": "'Courier New', Courier, monospace", 
+        "layer": "top",
+        "position": "bottom",
+        
+        "modules-left": ["image#album-art", "hyprland/window"],
+        "modules-center": ["group/apps"],
+        "modules-right": ["network", "tray", "bluetooth", "group/control", "privacy"],
+
+        "swap-icon-label": false,
+
+        //modulos independientes
+         "bluetooth": {
+            "format": "  ",
+            "format-connected": "  ",
+            "format-disconnected": "  ",
+            "on-click": "blueman-manager"  // Abre Blueman para gestionar dispositivos
+        },
+        "network": {     
+            "format-wifi": " {essid} ({signalStrength}%) ",
+            "format-ethernet": " 󰊗 {ipaddr} / {cidr} ",
+            "format-disconnected": "", //An empty format will hide the module.
+            "tooltip-format": " 󰊗 {ifname} via {gwaddr}",
+            "tooltip-format-wifi": "  {essid} ({signalStrength}%)",
+            "tooltip-format-ethernet": "  {ifname} ",
+            "tooltip-format-disconnected": " Disconnected ",
+            "max-length": 60
+           
+        
+        },
+        
+
+        //modulos hyprland
+        "hyprland/window": {
+            "format": " {title} ",
+            "max-length":  50
+        },
+
+
+        //groups
+        "group/apps": {
+            "orientation": "horizontal",
+            "children-class": "apps_c",
+            "modules": [
+                "image#launcher_app",
+                "image#kitty_start",
+                "image#visual_studioCode",
+                "image#firefox",
+                "image#obsidian"
+
+                
+            ]
+        },
+        "group/control": {
+            "orientation": "inherit",
+            "drawer": {
+                "transition-duration": 500,
+                "transition-left-to-right": false
+            },
+            "children-class": "control_c",
+            "modules": [
+                "custom/control_Main",
+                "custom/registros",
+                "custom/mapas",
+                "custom/disk_analizator",
+                "custom/htop",
+                "custom/monitor"
+            ]
+        },
+
+        // Modulos para apps
+        // for group/apps
+        "image#launcher_app": {
+           "path": "/home/aru/.config/waybar/images_apps/archivos.png",
+            "size": 22,
+            "on-click": "/home/aru/.config/waybar/scripts/app-launcher.sh"
+        },
+        "image#visual_studioCode": {
+           "path": "/home/aru/.config/waybar/images_apps/vs_codeImg.png",
+            "size": 22,
+            "on-click": "/home/aru/.config/waybar/scripts/vs_code.sh"
+        },
+        "image#kitty_start": {
+            "path": "/home/aru/.config/waybar/images_apps/kittyIMg.png",
+            "size": 22,
+            "on-click": "/home/aru/.config/waybar/scripts/kitty_start.sh"
+        },
+        "image#firefox": {
+            "path": "/home/aru/.config/waybar/images_apps/firefox.png",
+            "size": 22,
+            "on-click": "/home/aru/.config/waybar/scripts/firefox_launcher.sh"
+        },
+        "image#obsidian": {
+            "path": "/home/aru/.config/waybar/images_apps/obsidian.png",
+            "size": 22,
+            "on-click": "/home/aru/.config/waybar/scripts/obsidian.sh"
+        },
+
+
+        
+        // for group/control
+        "custom/control_Main": {
+           "format": "  "
+        },
+        "custom/registros": {
+           "format": "  ",
+            "on-click": "/home/aru/.config/waybar/scripts/control_scripts/registros.sh"
+        },
+        "custom/mapas": {
+           "format": "  ",
+           
+            "on-click": "/home/aru/.config/waybar/scripts/control_scripts/mapas.sh"
+        },
+        "custom/disk_analizator": {
+           "format": "  ",
+           
+            "on-click": "/home/aru/.config/waybar/scripts/control_scripts/disk_anali.sh"
+        },
+        "custom/htop": {
+           "format": "  ",
+           
+            "on-click": "/home/aru/.config/waybar/scripts/control_scripts/htop.sh"
+        },
+        "custom/monitor": {
+           "format": "  ",
+           
+            "on-click": "/home/aru/.config/waybar/scripts/control_scripts/sistemMonitor.sh"
+        },
+
+
+
+
+
+
+        //modulos
+        "image#album-art": {
+            "path": "/home/aru/.config/hypr/archLogo.png",
+            "size": 28
+        },
+        "privacy": {
+            "icon-spacing": 4,
+            "icon-size": 18,
+            "transition-duration": 250,
+            "modules": [
+                {
+                    "type": "screenshare",
+                    "tooltip": true,
+                    "tooltip-icon-size": 24
+                },
+                {
+                    "type": "audio-out",
+                    "tooltip": true,
+                    "tooltip-icon-size": 24
+                },
+                {
+                    "type": "audio-in",
+                    "tooltip": true,
+                    "tooltip-icon-size": 24
+                }
+            ],
+            "ignore-monitor": true,
+            "ignore": [
+                {
+                    "type": "audio-in",
+                    "name": "cava"
+                },
+                {
+                    "type": "screenshare",
+                    "name": "obs"
+                }
+            ]
+        }
+    },
+
+    {
+        "editor.fontFamily": "'Courier New', Courier, monospace", 
+        "layer": "top",
+        
+        "modules-left": [ "user", "group/hardware"],
+        "modules-center": ["hyprland/workspaces"],
+        "modules-right": ["group/leftMenu", "custom/notification", "custom/power"],
+
+        "swap-icon-label": false,
+        
+
+
+
+
+        //Extra modules     
+        "battery": {
+            "format": "  {capacity}% ",
+            "format-charging":  "  {capacity}%",
+            "interval": 5
+        },
+        "clock": {
+            "format": " {:%H:%M}  ",
+            "tooltip-format": "{:%A %d %B %Y}",
+            "interval": 602
+
+            
+        },
+        "pulseaudio": {
+            "format": " {volume}% {icon} ",
+            "format-muted": "  ",
+            "on-click": "pavucontrol",
+            "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+            "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+            "on-middle-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+            "format-icons": [
+                ""
+
+            ]
+        },
+        "cpu": {
+            "format": "  {usage}% ",
+            "interval": 5
+        },
+        "image#album-art": {
+            "path": "/home/aru/.config/hypr/archLogo.png",
+            "size": 22
+        },
+        "backlight": {
+            "device": "intel_backlight",
+            "format": " {percent}% {icon} ",
+            "format-icons": [""]
+        },
+        //bluetooth sitio antiguo
+        "disk": {
+            "interval": 30,
+            "format": "  {percentage_free}% "
+
+        },
+        "memory": {
+            "interval": 30,
+            "format": "  {}% ",
+            "max-length": 10
+        },
+         "temperature": {
+            // "thermal-zone": 2,
+            // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+            // "critical-threshold": 80,
+            // "format-critical": "{temperatureC}°C ",
+            "format": "  {temperatureC}°C ",
+            "interval": 30
+        },
+        "user": {
+            "format": " {user} {work_d}:{work_H}:{work_M}:{work_S} ",
+            "interval": 1,
+            "height": 30,
+            "width": 30,
+            "icon": true,
+            "tooltip": false
+        },
+
+
+
+
+
+        //Group modules
+        "group/leftMenu": {
+            "orientation": "horizontal",
+            "modules": [
+                "backlight", 
+                "pulseaudio", 
+                "clock"
+            ]
+            
+        },
+        
+        "group/hardware": {
+            "orientation": "horizontal",
+            "modules": [
+                "cpu",
+                "disk",
+                "memory",
+                "temperature",
+                "battery"
+
+            ]
+
+        },
+        
+
+
+
+
+
+
+
+        //Custom modules for Groups
+        "custom/power": {
+            "format": "  ",
+            "tooltip": false,
+
+            // ← qué click abre el menú
+            "menu": "on-click",
+
+            // ← usa RUTA ABSOLUTA al XML
+            "menu-file": "/home/aru/.config/waybar/menus/power.xml",
+
+            // ← ids del XML → comandos a ejecutar
+            "menu-actions": {
+                                // o: swaylock -f -c 000000
+                "logout": "hyprctl dispatch exit",
+                "suspend": "systemctl suspend",
+                "reboot": "systemctl reboot",
+                "shutdown": "systemctl poweroff"
+            }   
+            
+        },
+        "custom/notification": {
+            "tooltip": false,
+            "format": " {icon} ",
+            "format-icons": {
+            "notification": " <span foreground='blue'><sup>!</sup></span> ",
+            "none": "  ",
+            "dnd-notification": "  ",
+            "dnd-none": "  ",
+            "inhibited-notification": " <span foreground='red'><sup></sup></span> ",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": " <span foreground='red'><sup></sup></span> ",
+            "dnd-inhibited-none": "  "
+            },
+            "return-type": "json",
+            "exec-if": "which swaync-client",
+            "exec": "swaync-client -swb",
+            "on-click": "swaync-client -t -sw",
+            "on-click-right": "swaync-client -d -sw",
+            "escape": true
+        },
+
+        
+
+        //hyprland modules
+        
+        "hyprland/workspaces": {
+            "format": "{icon}",
+            
+            "format-icons": {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": "",
+                "focused": "f",
+                "default": "",
+                "urgent": "!!"
+            }
+        }
+
+        //custom modules
+    
+    }
+]
